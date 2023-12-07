@@ -1,0 +1,28 @@
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Auctions{% endblock %}</title>
+    </head>
+    <body>
+        <header>
+            <h1>Auctions "R" Us</h1>
+            <nav>
+                <ul class="nav bg-info">
+                    <li class="nav-item p-2">Test</li>
+                    <li class="nav-item p-2">Test2</li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            {% block main %}
+            {% endblock %}
+        </main>
+    </body>
+</html>
