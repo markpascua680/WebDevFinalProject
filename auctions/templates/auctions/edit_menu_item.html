@@ -1,0 +1,32 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+
+{% block main %}
+
+<h2>Edit: {{ menu_item.item_name }}</h2>
+
+<form action="{% url 'edit_menu_item' menu_item.id %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label>Item Name:</label>
+    <input type="text" name="item_name" value="{{ menu_item.item_name }}">
+    <label>Image:</label>
+    {% if menu_item.image %}
+        <img src="{{ menu_item.image.url }}" width="200px">
+    {% else %}
+        <img src="/media/images/menu_items/DefaultFood.png" width="200px">
+    {% endif %}
+    <div>
+        <input type="file" name="image" accept="image">
+    </div>
+    <label>Rating (0-5):</label>
+    <input type="number" min="0" max="5" name="rating" value="{{ menu_item.star_rating }}">
+    <label>Notes:</label>
+    <textarea name="notes" placeholder="How was it?">{{ menu_item.notes }}</textarea>
+    <div>
+        <a class="button" href="{% url 'restaurant' restaurant %}">Cancel</a>
+        <input class="button" type="reset" name="reset" value="Reset">
+        <input class="button" type="submit" name="submit" value="Update Menu Item">
+    </div>
+</form>
+
+{% endblock %}

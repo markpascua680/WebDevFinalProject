@@ -116,9 +116,23 @@ class RestaurantListView(ListView):
 
 def edit_menu_item(request, menu_item_id):
     menu_item = MenuItem.objects.get(id = menu_item_id)
-    return render(request, "auctions/menu_item.html", {
-        'menu_item': menu_item,
-    })
+    restaurant = menu_item.restaurant_set.get(menu_items__id=menu_item_id).name
+
+    if request.method == "GET":
+        print(restaurant)
+        return render(request, "auctions/edit_menu_item.html", {
+            'menu_item': menu_item,
+            'restaurant': restaurant,
+        })
+    elif request.method == "POST":
+        if request.FILES.get('image', None) is not None:
+            menu_item.image = request.FILES.get('image', None)
+
+        menu_item.item_name = request.POST["item_name"]
+        menu_item.star_rating = request.POST["rating"]
+        menu_item.notes = request.POST["notes"]
+        menu_item.save()
+    return redirect('restaurant', restaurant)
 
 
 def add_menu_item(request, restaurant_name):

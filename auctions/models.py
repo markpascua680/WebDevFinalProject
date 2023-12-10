@@ -9,7 +9,7 @@ class User(AbstractUser):
 class MenuItem(models.Model):
    item_name = models.CharField(('item_name'), max_length=150, blank=False, unique=True)
    star_rating = models.PositiveIntegerField(blank=True, null=True, validators=[MinValueValidator(0), MaxValueValidator(5)])
-   image = models.ImageField(upload_to ='images/menu_items') 
+   image = models.ImageField(upload_to ='images/menu_items', blank=True) 
    notes = models.TextField(('notes'), max_length=300, blank=True)
    pass
 
