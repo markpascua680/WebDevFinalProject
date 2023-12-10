@@ -1,15 +1,52 @@
 {% extends "auctions/layout.html" %}
+{% load static %}
 
 {% block main %}
+<div class="row">
+    <div class="col-2">
+        <h2>{{ restaurant }}</h2>
+
+    </div>
+    <div class="col-2 flex float-right">
+        <a class="button vertical-center" href="{% url 'create_menu_item' restaurant_name=restaurant %}">
+            Add Menu Item
+        </a>
+
+    </div>
+</div>
 <div class="float-right">
-    <a class="button" href="{% url 'create_menu_item' restaurant_name=restaurant %}">
-        Add Menu Item
-    </a>
 </div>
 
-<h2>{{ restaurant }}</h2>
 
-{% for item in menu_items %}
-<div>{{ item.item_name }}</div>
-{% endfor %}
+{% if menu_items %}
+    {% for item in menu_items %}
+    <div class="center">
+        <a class="card-gray m-25 p-25 row" href="{% url 'edit_menu_item' item.id %}">
+            <div class="row">
+                <div class="col-2">
+                    <div class="center">{{ item.item_name }}</div>
+                    {% if item.image %}
+                    <div class="center">
+                        <img src="{{ item.image.url }}" width="200px">
+                    </div>
+                    {% endif %}
+                    <div class=""></div>
+                </div>
+                <div class="col-2 p-25">
+                    <div class="center">Rating:</div>
+                    <div class="center">{{ item.star_rating }}/5</div>
+                    <div class="p-25"></div>
+                    <div class="center">Notes:</div>
+                    <div class="center">{{ item.notes }}</div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+{% else %}
+    <div class="card-gray center">
+        No menu items have been entered yet.
+    </div>
+{% endif %}
+
 {% endblock %}

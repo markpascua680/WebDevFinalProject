@@ -10,4 +10,5 @@ urlpatterns = [
     path("restaurant/<str:restaurant_name>", views.restaurant, name="restaurant"),
     path("restaurant/create/", views.add_restaurant, name="create_restaurant"),
     path("menu_item/create/<str:restaurant_name>", views.add_menu_item, name="create_menu_item"),
+    path("edit_menu_item/<int:menu_item_id>", views.edit_menu_item, name="edit_menu_item"),
 ]

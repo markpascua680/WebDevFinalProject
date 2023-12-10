@@ -83,7 +83,6 @@ def register(request):
 
 def restaurant(request, restaurant_name):
     menu_items = Restaurant.objects.get(name=restaurant_name).menu_items.all()
-    print(menu_items)
     return render(request, "auctions/restaurant.html" , {
         'restaurant': restaurant_name,
         'menu_items': menu_items,
@@ -113,6 +112,13 @@ class RestaurantListView(ListView):
     
     def get_queryset(self):
         return Restaurant.objects.all()
+    
+
+def edit_menu_item(request, menu_item_id):
+    menu_item = MenuItem.objects.get(id = menu_item_id)
+    return render(request, "auctions/menu_item.html", {
+        'menu_item': menu_item,
+    })
 
 
 def add_menu_item(request, restaurant_name):
@@ -133,4 +139,10 @@ def add_menu_item(request, restaurant_name):
             restaurant.menu_items.add(menu_item)
             menu_item.save()
             restaurant.save()
+        else:
+            request.method = "GET"
+            return render(request, "auctions/create_menu_item.html", {
+            'message': 'That item already exists.',
+            'restaurant': restaurant_name,
+        })
         return redirect('restaurant', restaurant_name)

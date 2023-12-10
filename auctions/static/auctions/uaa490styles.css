@@ -41,6 +41,10 @@ body {
   line-height: 200px;
 }
 
+.vertical-center {
+  vertical-align: middle;
+}
+
 .col {
   width: 100%;
 }
@@ -174,6 +178,10 @@ button {
   padding: 25px;
 }
 
+.m-25 {
+  margin: 25px;
+}
+
 .mb-25 {
   margin-bottom: 25px;
 }
@@ -264,7 +272,17 @@ h4 {
 
 a {
   color: rgba(0, 195, 255, 0.753) !important;
-  text-decoration: none;
+  text-decoration: none !important;
+  cursor: pointer;
+
+  &.card-gray {
+    width: 700px !important;
+
+    &:hover {
+      border-color: rgba(0, 195, 255, 0.753) !important;
+      background-color: rgba(0, 195, 255, 0.233) !important;
+    }
+  }
 
   &.category {
     transition: all 500ms;
@@ -282,6 +300,7 @@ a {
 
 .float-right {
   float: right;
+  justify-content: end;
 }
 
 #watchlist_button {
@@ -339,4 +358,8 @@ a {
   border: 3px solid rgba(0, 195, 255, 0.753) !important;
     background-color: rgba(0, 195, 255, 0.753) !important;
     color: aliceblue !important;    
+}
+
+.alert {
+  color: red;
 }
