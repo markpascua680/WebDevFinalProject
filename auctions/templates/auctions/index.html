@@ -1,0 +1,16 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+{% block main %}
+<div class="float-right">
+    <a class="button" href="{% url 'create_restaurant' %}">
+        Add Restaurant
+    </a>
+</div>
+<div class="card-gray">
+    {% for restaurant in restaurants %}
+    <div class="col-2 category-box">
+        <a class="interactive-card category center text-vertical-center" href="{% url 'restaurant' restaurant_name=restaurant.name %}">{{ restaurant.name }}</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

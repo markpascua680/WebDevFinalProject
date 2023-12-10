@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Auctions{% endblock %}</title>
+        <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+        <link rel="stylesheet" href="{% static 'auctions/uaa490styles.css' %}" >
+        {% block head %}
+        {% endblock %}
+    </head>
+    <body>
+        <header>
+            <h1>Eater Helper</h1>
+            <nav>
+                <span>
+                    <a class="nav-button" href="{% url 'index' %}">Active Listings</a>
+                    <a class="nav-button">Categories</a>
+                    <a class="nav-button">Create Listing</a>
+                </span>
+                <span>
+                    <a class="nav-button" href="{% url 'logout' %}">Log Out</a>
+                    <a class="nav-button" href="{% url 'login' %}">Log In</a>
+                    <a class="nav-button" href="{% url 'register' %}">Register</a>
+                </span>
+            </nav>
+        </header>
+        <main>
+            {% block main %}
+            {% endblock %}
+        </main>
+    </body>
+</html>

@@ -1,0 +1,15 @@
+{% extends "auctions/layout.html" %}
+
+{% block main %}
+<div class="float-right">
+    <a class="button" href="{% url 'create_menu_item' restaurant_name=restaurant %}">
+        Add Menu Item
+    </a>
+</div>
+
+<h2>{{ restaurant }}</h2>
+
+{% for item in menu_items %}
+<div>{{ item.item_name }}</div>
+{% endfor %}
+{% endblock %}
