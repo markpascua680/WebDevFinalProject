@@ -40,4 +40,49 @@
             {% endblock %}
         </main>
     </body>
+    <div class="footer p-25 row">
+        <div class="col-3">
+            <div class="row">
+                <h5 class="col-2">Eater Helper
+                    <ul>
+                        <li>About Us</li>
+                        <li>Contact Us</li>
+                        <li>Terms and Conditions</li>
+                    </ul>
+                </h5>
+                <h5 class="col-2">Social
+                    <ul>
+                        <li>Facebook</li>
+                        <li>Twitter</li>
+                        <li>Instagram</li>
+                        <li>YouTube</li>
+                    </ul>
+                </h5>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="row">
+                <h5 class="col-2">Service
+                    <ul>
+                        <li>Feedback</li>
+                        <li>Bug Report</li>
+                    </ul>
+                </h5>
+                <h5 class="col-2">Activity
+                    <ul>
+                        <li>Affiliates</li>
+                        <li>Events</li>
+                    </ul>
+                </h5>
+            </div>
+        </div>
+        <h5 class="col-3">
+            Subscribe To Our Newsletter For Coupons
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="text" name="email" value="Enter your email">
+                <button class="button" type="submit">Subscribe</button>
+            </form>
+        </h5>
+    </div>
 </html>
