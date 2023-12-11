@@ -109,7 +109,7 @@ def edit_profile(request):
 
 
 def restaurant(request, restaurant_name):
-    menu_items = Restaurant.objects.get(creator__id=request.user.id).menu_items.all()
+    menu_items = Restaurant.objects.filter(name=restaurant_name).get(creator__id=request.user.id).menu_items.all()
     return render(request, "auctions/restaurant.html" , {
         'restaurant': restaurant_name,
         'menu_items': menu_items,
@@ -180,7 +180,7 @@ def add_menu_item(request, restaurant_name):
                 image = request.FILES.get('image', None),
                 notes = request.POST["notes"],
             )
-            restaurant = Restaurant.objects.get(creator__id=request.user.id)
+            restaurant = Restaurant.objects.filter(name=restaurant_name).get(creator__id=request.user.id)
             restaurant.menu_items.add(menu_item)
             menu_item.save()
             restaurant.save()
