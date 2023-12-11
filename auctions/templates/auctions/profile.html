@@ -1,0 +1,20 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+{% block main %}
+<a class="button float-right" href="{% url 'edit_profile' %}">Edit Profile</a>
+<div class="card-gray p-25">
+    {% if user.is_authenticated %}
+    <h1 class="center">{{ user.username }}</h1>
+    <div class="center">
+        {% if user.profile_picture %}
+        <img class="profile-picture" src="{{ user.profile_picture.url }}" width="200px">
+        {% else %}
+        <img class="profile-picture" src="/media/images/profile/Default.png" width="200px">
+        {% endif %} 
+    </div>
+        {% if user.first_name and user.last_name %}
+        <div class="center">{{user.first_name}} {{user.last_name}}</div>
+        {% endif %} 
+    {% endif %} 
+</div>
+{% endblock %}

@@ -178,12 +178,20 @@ button {
   padding: 25px;
 }
 
+.pt-25 {
+  padding-top: 25px;
+}
+
 .m-25 {
   margin: 25px;
 }
 
 .mb-25 {
   margin-bottom: 25px;
+}
+
+.ml-10 {
+  margin-left: 10px;
 }
 
 .horizontal-space-evenly {
@@ -356,10 +364,33 @@ a {
 
 .button {
   border: 3px solid rgba(0, 195, 255, 0.753) !important;
-    background-color: rgba(0, 195, 255, 0.753) !important;
-    color: aliceblue !important;    
+  background-color: rgba(0, 195, 255, 0.753) !important;
+  color: aliceblue !important;    
+}
+
+.button-save {
+  border: 3px solid rgba(0, 255, 13, 0.753) !important;
+  background-color: rgba(0, 255, 13, 0.753) !important;
+  color: aliceblue !important;    
+  float: right;
 }
 
 .alert {
   color: red;
+}
+
+.profile-picture {
+  border-radius: 50%;
+  height: 300px;
+  width: 300px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.profile-picture-nav {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  object-position: center;
 }

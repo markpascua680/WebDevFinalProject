@@ -80,6 +80,25 @@ def register(request):
         return render(request, "auctions/register.html")   
 
 
+def profile(request):
+    print("test")
+    print(request.user.profile_picture)
+    return render(request, "auctions/profile.html")
+
+
+def edit_profile(request):
+    if request.method == "GET":
+        return render(request, "auctions/edit_profile.html")
+    elif request.method == "POST":
+        user = request.user
+        if request.FILES.get('profile_picture', None) is not None:
+            user.profile_picture = request.FILES.get('profile_picture', None)
+        user.username = request.POST['username']
+        user.first_name = request.POST['first_name']
+        user.last_name = request.POST['last_name']
+        user.save()
+    return redirect(profile)
+
 
 def restaurant(request, restaurant_name):
     menu_items = Restaurant.objects.get(name=restaurant_name).menu_items.all()
@@ -119,7 +138,6 @@ def edit_menu_item(request, menu_item_id):
     restaurant = menu_item.restaurant_set.get(menu_items__id=menu_item_id).name
 
     if request.method == "GET":
-        print(restaurant)
         return render(request, "auctions/edit_menu_item.html", {
             'menu_item': menu_item,
             'restaurant': restaurant,

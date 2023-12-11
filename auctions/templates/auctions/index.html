@@ -6,7 +6,7 @@
         Add Restaurant
     </a>
 </div>
-<div class="card-gray">
+<div class="card-gray pt-25">
     {% for restaurant in restaurants %}
     <div class="col-2 category-box">
         <a class="interactive-card category center text-vertical-center" href="{% url 'restaurant' restaurant_name=restaurant.name %}">{{ restaurant.name }}</a>
