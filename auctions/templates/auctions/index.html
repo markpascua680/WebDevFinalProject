@@ -1,15 +1,28 @@
 {% extends "auctions/layout.html" %}
 {% load static %}
 {% block main %}
-<div class="float-right">
-    <a class="button" href="{% url 'create_restaurant' %}">
-        Add Restaurant
-    </a>
+<div class="row">
+    <div class="col-2">
+        <form action="" method="POST">{% csrf_token %}
+            <input class="search-bar" type="text" name="search_input" placeholder="Search Restaurants">
+            <button class="button button-search-bar" type="submit">Search</button>
+        </form>
+    </div>
+    <div class="col-2">
+        <div class="float-right">
+            <a class="button" href="{% url 'create_restaurant' %}">
+                Add Restaurant
+            </a>
+        </div>
+    </div>
 </div>
+{% if header %}
+<h2>{{ header }}</h2>
+{% endif %}
 <div class="card-gray pt-25">
     {% for restaurant in restaurants %}
     <div class="col-2 category-box">
-        <a class="interactive-card category center text-vertical-center" href="{% url 'restaurant' restaurant_name=restaurant.name %}">{{ restaurant.name }}</a>
+        <a class="interactive-card category center text-vertical-center" href="{% url 'restaurant' restaurant.name %}">{{ restaurant.name }}</a>
     </div>
     {% endfor %}
 </div>

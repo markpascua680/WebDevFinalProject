@@ -379,6 +379,19 @@ a {
   float: right;
 }
 
+.button-search-bar {
+  border: 2px solid rgba(0, 195, 255, 0.753)!important;
+  margin-left: -5px;
+  border-top-left-radius: 0% !important;
+  border-bottom-left-radius: 0% !important;
+}
+
+.search-bar {
+  border: 2px solid rgba(0, 195, 255, 0.753)!important;
+  border-top-right-radius: 0% !important;
+  border-bottom-right-radius: 0% !important;
+}
+
 .alert {
   color: red;
 }

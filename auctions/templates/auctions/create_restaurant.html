@@ -5,6 +5,9 @@
 
 <form action="{% url 'create_restaurant' %}" method="POST">
     {% csrf_token %}
+    {% if message %}
+    <div class="alert">{{ message }}</div>
+    {% endif %}
     <label>Restaurant Name:</label>
     <input type="text" name="restaurant_name">
     <div>

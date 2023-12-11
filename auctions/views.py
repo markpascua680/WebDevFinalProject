@@ -14,11 +14,19 @@ from .models import User, Restaurant, MenuItem
 from .forms import RestaurantForm, MenuItemForm
 
 def index(request):
-    restaurants = Restaurant._meta.model.objects.all()
-    
-    return render(request, "auctions/index.html", {
-        'restaurants': restaurants,
-    })
+    if request.method == "GET":
+        restaurants = Restaurant._meta.model.objects.all()
+        return render(request, "auctions/index.html", {
+            'restaurants': restaurants,
+        })
+    # Search Restaurants
+    elif request.method == "POST":
+        search = request.POST['search_input'].strip()
+        restaurants = Restaurant.objects.filter(name__icontains=search).all()
+        return render(request, "auctions/index.html", {
+            'header': f"Search Results For '{search}'",
+            'restaurants': restaurants,
+        })
     
 
 def login_view(request, **kwargs):
@@ -112,6 +120,10 @@ def add_restaurant(request):
     if request.method == "GET":
         return render(request, "auctions/create_restaurant.html")
     elif request.method == "POST":
+        if not request.POST["restaurant_name"]:
+            return render(request, "auctions/create_restaurant.html", {
+                'message': 'Please enter a name for the restaurant.',
+            })
         restaurants = Restaurant.objects.create(
             name = request.POST["restaurant_name"],
         )
