@@ -190,3 +190,11 @@ def add_menu_item(request, restaurant_name):
             'restaurant': restaurant_name,
         })
         return redirect('restaurant', restaurant_name)
+
+from django.contrib.auth import views as auth_views
+class ChangePasswordView(auth_views.PasswordChangeView):
+    success_url = reverse_lazy('index')
+
+
+class ChangePasswordDoneView(auth_views.PasswordChangeDoneView):
+        success_url = reverse_lazy('index')

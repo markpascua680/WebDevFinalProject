@@ -22,7 +22,7 @@
                 <span>
                     {% if user.is_authenticated %}
                         {% if user.profile_picture %}
-                        <img class="profile-picture-nav vertical-center" src="{{ user.profile_picture.url }}" width="200px">
+                        <img class="profile-picture-nav" src="{{ user.profile_picture.url }}" width="200px">
                         {% else %}
                         <img class="profile-picture-nav" src="/media/images/profile/Default.png" width="200px">
                         {% endif %} 

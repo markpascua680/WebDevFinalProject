@@ -1,6 +1,7 @@
 {% extends "auctions/layout.html" %}
 {% load static %}
 {% block main %}
+<a class="button float-right ml-10" href="{% url 'change_password' %}">Change Password</a>
 <a class="button float-right" href="{% url 'edit_profile' %}">Edit Profile</a>
 <div class="card-gray p-25">
     {% if user.is_authenticated %}

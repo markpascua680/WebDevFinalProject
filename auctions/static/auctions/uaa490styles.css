@@ -410,6 +410,7 @@ a {
   width: 40px;
   object-fit: cover;
   object-position: center;
+  vertical-align: middle;
 }
 
 .footer {

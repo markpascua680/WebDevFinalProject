@@ -13,4 +13,6 @@ urlpatterns = [
     path("restaurant/create/", views.add_restaurant, name="create_restaurant"),
     path("menu_item/create/<str:restaurant_name>", views.add_menu_item, name="create_menu_item"),
     path("edit_menu_item/<int:menu_item_id>", views.edit_menu_item, name="edit_menu_item"),
+    path("change_password/", views.ChangePasswordView.as_view(), name="change_password"),
+    path("change_password/done", views.ChangePasswordDoneView.as_view(), name="change_password_done"),
 ]
