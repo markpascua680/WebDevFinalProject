@@ -14,6 +14,7 @@ urlpatterns = [
     path("restaurant/create/", views.add_restaurant, name="create_restaurant"),
     path("menu_item/create/<str:restaurant_name>", views.add_menu_item, name="create_menu_item"),
     path("edit_menu_item/<int:menu_item_id>", views.edit_menu_item, name="edit_menu_item"),
+    path("contact_us/", views.contact_us, name="contact_us"),
     path("change_password/", auth_views.PasswordChangeView.as_view(), name="change_password"),
     path("change_password/done", auth_views.PasswordChangeDoneView.as_view(), name="change_password_done"),
     path("password_reset/", auth_views.PasswordResetView.as_view(), name="reset_password"),

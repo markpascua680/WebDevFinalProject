@@ -15,7 +15,7 @@ from .forms import RestaurantForm, MenuItemForm
 
 def index(request):
     if request.method == "GET":
-        restaurants = Restaurant._meta.model.objects.all()
+        restaurants = Restaurant._meta.model.objects.filter(creator__id=request.user.id).all()
         return render(request, "auctions/index.html", {
             'restaurants': restaurants,
         })
@@ -109,7 +109,7 @@ def edit_profile(request):
 
 
 def restaurant(request, restaurant_name):
-    menu_items = Restaurant.objects.get(name=restaurant_name).menu_items.all()
+    menu_items = Restaurant.objects.get(creator__id=request.user.id).menu_items.all()
     return render(request, "auctions/restaurant.html" , {
         'restaurant': restaurant_name,
         'menu_items': menu_items,
@@ -124,10 +124,11 @@ def add_restaurant(request):
             return render(request, "auctions/create_restaurant.html", {
                 'message': 'Please enter a name for the restaurant.',
             })
-        restaurants = Restaurant.objects.create(
+        restaurant = Restaurant.objects.create(
             name = request.POST["restaurant_name"],
         )
-        restaurants.save()
+        restaurant.creator = request.user
+        restaurant.save()
         return redirect(index)
 
 
@@ -171,7 +172,7 @@ def add_menu_item(request, restaurant_name):
             'restaurant': restaurant_name,
         })
     elif request.method == "POST":
-        menu_item = MenuItem.objects.filter(item_name=request.POST["item_name"]).all().values('pk')
+        menu_item = MenuItem.objects.filter(item_name=request.POST["item_name"]).filter(user__id=request.user.id).all().values('pk')
         if not menu_item.exists():
             menu_item = MenuItem.objects.create(
                 item_name = request.POST["item_name"],
@@ -179,7 +180,7 @@ def add_menu_item(request, restaurant_name):
                 image = request.FILES.get('image', None),
                 notes = request.POST["notes"],
             )
-            restaurant = Restaurant.objects.get(name=restaurant_name)
+            restaurant = Restaurant.objects.get(creator__id=request.user.id)
             restaurant.menu_items.add(menu_item)
             menu_item.save()
             restaurant.save()
@@ -190,6 +191,11 @@ def add_menu_item(request, restaurant_name):
             'restaurant': restaurant_name,
         })
         return redirect('restaurant', restaurant_name)
+    
+
+def contact_us(request):
+    return render(request, "auctions/contact_us.html")
+
 
 from django.contrib.auth import views as auth_views
 class ChangePasswordView(auth_views.PasswordChangeView):

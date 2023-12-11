@@ -1,0 +1,25 @@
+{% extends "auctions/layout.html" %}
+
+{% block main %}
+<h2>Contact Us!</h2>
+
+{% if message %}
+<div class="alert">{{ message }}</div>
+{% endif %}
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="col-3">
+        <label>First Name:</label>
+        <input type="text" name="first_name">
+        <label>Last Name:</label>
+        <input type="text" name="last_name">
+        <label>Subject:</label>
+        <input type="text" name="subject">
+        <label>Email:</label>
+        <textarea name="email" placeholder="Let us know your thoughts!"></textarea>
+        <div>
+            <input class="button" type="submit" name="submit" value="Send Email">
+        </div>
+    </div>
+</form>
+{% endblock %}
